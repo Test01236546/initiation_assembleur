@@ -39,3 +39,59 @@ FERMER ET OUVRIR VS CODE
 2. maj des packages : sudo apt-get update
 3. installer : sudo apt install nasm
 
+### TP1
+# assembleur en linux 64 bits
+
+bits 64
+
+section .data
+    message db 'Hello World !', 10      ; pas compris mais pour afficher
+
+section .text
+    global _start               ; dire où trouver la variable (aurait pu être mis plus haut)
+    _start:
+        mov rax, 1
+        mov rdi, 1
+        mov rsi, message
+        mov rdx, 13+1
+        syscall
+
+        mov rax, 60              ; cette partie vise à fermer le programme
+        mov rdi, 0
+        syscall 
+
+# assembleur windows 64 bit
+
+bits 64 
+
+extern GetStdHandle
+extern WriteConsoleA
+extern ExitProcess
+
+section .data
+    message db 'Hello World !', 10
+
+section .bss
+    written resq 1
+
+section .text
+    global main
+    main:
+        mov rcx, -11
+        call GetStdHandle
+
+        sub rsp, 32
+        sub rsp, 8
+
+        mov rcx, rax
+        mov rdx, message
+        mov r8, 13
+        mov r9, written 
+        mov qword [rsp+32], 0
+        call WriteConsoleA
+
+        add rsp, 32+8
+
+        xor ecx, ecx
+        call ExitProcess
+
