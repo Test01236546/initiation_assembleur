@@ -1,0 +1,38 @@
+
+1) installer nasm
+2) ld (ici c'est un compilateur que j'avais installer grace avec Ubuntu)
+sinon : sudo apt intall build-essential
+3) code
+
+bits 64 (on en 64 bits)
+
+section .data
+    message db 'Hello World !', 10
+
+section .text
+    global _start 
+    _start:
+        mov rax, 1
+        mov rdi, 1
+        mov rsi, message
+        mov rdx, 13+1
+        syscall
+
+        mov rax, 60     #quitter 
+        mov rdi, 0
+        syscall 
+
+4) assembler
+on utilise le format elf d'où -f
+ld attend un fichier avec l'extension o
+
+nasm -f elf64 a64.asm -o a64.o
+
+5) un fichier a64.o est créé (objet)
+
+6) ld a64.o -o a64 , on obtient un fichier a64
+7) on exécute le fichier : ./a64
+
+windows\golink.exe
+
+C:\Users\jerem\OneDrive\Documents\Etudes\ENSAI\2A\projets_perso\assembleur\a64
