@@ -30,7 +30,8 @@ cd ..           // change directory, one level up
 cd my_folder    // change directory, move down to "my_folder"
 FERMER ET OUVRIR VS CODE
 
-
+## Initialiser nouveau dépot git avec un fichier déja existant
+initialiser : git init 
 
 
 
