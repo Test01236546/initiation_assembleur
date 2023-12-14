@@ -1,37 +1,19 @@
 
 
-Installer nasm
-    An easy alternative for Windows 10 would be installing NASM with the winget Package Manager.
 
-    Run the Command Prompt as an Administrator and then:
-
-    Install NASM
-
-    winget install nasm -i
-    Add it to the Environment Variables
-
-    C:\Program Files\NASM
-    Or alternatively with setx:
-
-    Be cautious as it may overwrite your current variables (It didn't for me)
-
-    setx Path "%Path%;C:\Program Files\NASM\"
-    Restart the Command Prompt and verify
-
-    nasm --version
-    NASM version 2.15.05 compiled on Aug 28 2020
-
-mon chemin perso nasm : C:\Users\jerem\AppData\Local\bin\NASM
-mettre NASM dans C:\Program Files
-puis : setx Path "%Path%;C:\Program Files\NASM\"
-
-cd              // change directory, back to your home
-cd ..           // change directory, one level up
-cd my_folder    // change directory, move down to "my_folder"
-FERMER ET OUVRIR VS CODE
 
 ## Initialiser nouveau dépot git avec un fichier déja existant
 initialiser : git init 
+ajouter :  git add .
+import initial : git commit -m "Initial import"
+ajouter origine : git remote add origin https://<votre_serveur_git>/<repository>.git
+pousser : git push -u origin master (remplacer éventuellement master par main)
+lien guide CGPT : https://chat.openai.com/share/164e7e71-600e-4228-abbc-d5fbd25f042c
+
+
+
+
+
 
 
 
