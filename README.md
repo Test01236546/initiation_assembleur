@@ -41,7 +41,7 @@ FERMER ET OUVRIR VS CODE
 3. installer : sudo apt install nasm
 
 ### TP1
-# assembleur en linux 64 bits
+## assembleur en linux 64 bits
 
 bits 64
 
@@ -65,7 +65,7 @@ section .text
 2. Créer le fichier à exécuter : ld a64.o -o a64
 3. Exécuter le fichier : ./video_2/a64 (attention au chemin)
 
-# assembleur windows 64 bit
+## assembleur windows 64 bit
 
 bits 64 
 
@@ -107,44 +107,23 @@ section .text
 
 ### TP2
 
-# assembleur windows 64 bit
+## assembleur windows 64 bit
 
-bits 64 
+# étiquette
+- main est une etiquette
+- pour les etiquette on peut utiliser quasi tous les carateres 
+- on peut utiliser un "$" pour forcer l'étiquetage 
+    - exemple : $rcx sera forcément etiquette
 
-extern GetStdHandle
-extern WriteConsoleA
-extern ExitProcess
+Syntaxe des étiquettes :
+<etiquette> : 
+    <instruction> <operande(s)>
+    <instruction> <operande(s)>
+    <instruction> <operande(s)>
 
-section .data
-    message db 'Hello World !', 10
+Rq : on peut mettre ":" derrière message mais pas utile. Il faut juste rester consistant
 
-section .bss
-    written resq 1
-
-section .text
-    global main
-    main:
-        mov rcx, -11
-        call GetStdHandle
-
-        sub rsp, 32
-        sub rsp, 8
-
-        mov rcx, rax
-        mov rdx, message
-        mov r8, 13
-        mov r9, written 
-        mov qword [rsp+32], 0
-        call WriteConsoleA
-
-        add rsp, 32+8
-
-        xor ecx, ecx
-        call ExitProcess
-
-# assembleur windows 64 bit
-
-bits 64 
+bits 64                                 <----pas obligatoire mais explicite (% au 32 bits par exemple)
 
 extern GetStdHandle
 extern WriteConsoleA
