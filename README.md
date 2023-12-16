@@ -36,6 +36,7 @@ FERMER ET OUVRIR VS CODE
 ##### Tuto rentrer dans WSL & installer nasm (avec wsl)
 
 1. renter dans WSL : wsl
+1. rentrer dans Ubuntu : wsl -d Ubuntu
 2. maj des packages : sudo apt-get update
 3. installer : sudo apt install nasm
 
