@@ -61,6 +61,10 @@ section .text
         mov rdi, 0
         syscall 
 
+1. Créer l'objet : nasm -f elf64 a64.asm -o a64.o
+2. Créer le fichier à exécuter : ld a64.o -o a64
+3. Exécuter le fichier : ./video_2/a64 (attention au chemin)
+
 # assembleur windows 64 bit
 
 bits 64 
@@ -96,3 +100,79 @@ section .text
         xor ecx, ecx
         call ExitProcess
 
+
+1. assembler le fichier : nasm -f win64 windows\a64win.asm -o windows\a64.obj (cré l'objet)
+2. .\windows\golink.exe windows\a64.obj /entry main /console kernel32.dll user32.dll  (attention aux chemins)
+3. .\windows\a64
+
+### TP2
+
+# assembleur windows 64 bit
+
+bits 64 
+
+extern GetStdHandle
+extern WriteConsoleA
+extern ExitProcess
+
+section .data
+    message db 'Hello World !', 10
+
+section .bss
+    written resq 1
+
+section .text
+    global main
+    main:
+        mov rcx, -11
+        call GetStdHandle
+
+        sub rsp, 32
+        sub rsp, 8
+
+        mov rcx, rax
+        mov rdx, message
+        mov r8, 13
+        mov r9, written 
+        mov qword [rsp+32], 0
+        call WriteConsoleA
+
+        add rsp, 32+8
+
+        xor ecx, ecx
+        call ExitProcess
+
+# assembleur windows 64 bit
+
+bits 64 
+
+extern GetStdHandle
+extern WriteConsoleA
+extern ExitProcess
+
+section .data
+    message db 'Hello World !', 10
+
+section .bss
+    written resq 1
+
+section .text
+    global main
+    main:
+        mov rcx, -11
+        call GetStdHandle
+
+        sub rsp, 32
+        sub rsp, 8
+
+        mov rcx, rax
+        mov rdx, message
+        mov r8, 13
+        mov r9, written 
+        mov qword [rsp+32], 0
+        call WriteConsoleA
+
+        add rsp, 32+8
+
+        xor ecx, ecx
+        call ExitProcess
