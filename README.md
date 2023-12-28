@@ -221,4 +221,4 @@ sur win64 on utilise les conventions vectorcall
 
 
 
-![alt text](image\tableau_GetStdHandle.png)
+![alt text](image/tableau_GetStdHandle.png)
