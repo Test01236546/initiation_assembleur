@@ -209,3 +209,16 @@ section .text                               ;bloc nommé text    (nommé segment
         call ExitProcess
 
 ### TP4
+
+sur win64 on utilise les conventions vectorcall
+
+
+
+
+
+
+
+
+
+
+![alt text](C:/Users/jerem/OneDrive/Documents/Etudes/ENSAI/2A/projets_perso/assembleur/image/tableau_GetStdHandle.png)

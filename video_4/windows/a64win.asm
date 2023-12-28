@@ -1,35 +1,24 @@
 
-; ;main est une etiquette
-; ; pour les etiquette on peut utiliser quasi tous les carateres 
-; ; on peut utiliser un "$" pour dire que c'est une etiquette ex : $rcx sera forcément etiquette
-; <etiquette> : 
-;     <instruction> <operande(s)>
-;     <instruction> <operande(s)>
-;     <instruction> <operande(s)>
-; ;on peut mettre ":" devant message mais pas obligatoire
-
-; cpu 8086 ;on peut ne demander des instructions que de certains processeurs (après le bits)
 
 
 
 
-bits 64                                     ;pas obligatoire mais explicite (% au 32 bits par exemple)
+bits 64                                    
 
-%define HELLO 'Hello World !'   ; macro : on remplace toutes les occurences dun terme par un autre (avant assemblage, ici après le bits 64)
-; %assign                         ; c'est aussi une macro
+%define HELLO 'Hello World !'   
 
-extern GetStdHandle                         ; Gestionnaire de périphérique kernel32.dll
-extern WriteConsoleA                        ; Ecriture en mode console
-extern ExitProcess                          ; Arrêt du processus 
+extern GetStdHandle                         
+extern WriteConsoleA                        
+extern ExitProcess                          
 
-section .data                               ;bloc nommé data    (nommé segment ou section)
+section .data                               
     message db HELLO, 10
-    message_length equ $-message            ; dispensable mais on peut remplacer le 13 plus loin
-section .bss                                ;bloc nommé bss     (nommé segment ou section)
+    message_length equ $-message            
+section .bss                                
     written resq 1
 
-section .text                               ;bloc nommé text    (nommé segment ou section) 
-    global main                             ;on exporte sinon on pourrait pas utiliser avec GoLink
+section .text                               
+    global main                             
     main:
         mov rcx, -11
         call GetStdHandle
@@ -37,11 +26,13 @@ section .text                               ;bloc nommé text    (nommé segment
         sub rsp, 32
         sub rsp, 8
 
-        mov rcx, rax
-        mov rdx, message
-        mov r8, message_length
-        mov r9, written 
-        mov qword [rsp+32], 0
+        ;name_func(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) il faut mettre le 8 puis le 7 etc (dépiler)
+
+        mov rcx, rax                            ; là c'est des entiers, float -> xmm0...xmm3
+        mov rdx, message                        ; xmm1
+        mov r8, message_length                  ; xmm2
+        mov r9, written                         ; xmm3
+        mov qword [rsp+32], 0                   ; le cinquième est indiqué sur la pile
         call WriteConsoleA
 
         add rsp, 32+8
